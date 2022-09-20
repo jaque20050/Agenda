@@ -2,8 +2,7 @@ package br.com.agenda.dao;
 
 import java.sql.Connection;
 import java.sql.Date;
-
-import com.mysql.jdbc.PreparedStatement;
+import java.sql.PreparedStatement;
 
 import br.com.agenda.factory.ConnectionFactory;
 import br.com.agenda.model.Contato;
@@ -16,8 +15,9 @@ public class ContatoDAO {
 
 		Connection conn = null;
 
-		PreparedStatement pStatement = null;
+		java.sql.PreparedStatement pStatement = null;
 
+		// PreparedStatement
 		try {
 			// Criar uma conexão com o banco de dados
 			conn = ConnectionFactory.createConnectionToMySQL();
@@ -32,6 +32,8 @@ public class ContatoDAO {
 
 			// Executar a query
 			pStatement.execute();
+			
+			System.out.println("Contato salvo com sucesso!!!!");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
