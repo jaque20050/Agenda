@@ -23,8 +23,11 @@ public class Main {
 		atualizar.setId(26);
 		atualizar.setDataCadastro(new Date());
 		atualizar.setId(1);
-		
-		contatoDAO.update(atualizar);
+
+		// contatoDAO.update(atualizar);
+
+		// Remover contato pelo Id
+		contatoDAO.deleteById(3);
 
 		// Visualização dos registros do banco de dados
 

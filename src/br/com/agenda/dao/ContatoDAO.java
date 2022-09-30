@@ -100,6 +100,40 @@ public class ContatoDAO {
 		}
 	}
 
+	public void deleteById(int id) {
+
+		String sql = "DELETE FROM contatos WHERE id = ?";
+
+		Connection conn = null;
+
+		PreparedStatement psStatement = null;
+
+		try {
+			conn = ConnectionFactory.createConnectionToMySQL();
+
+			psStatement = conn.prepareStatement(sql);
+
+			psStatement.setInt(1, id);
+
+			psStatement.execute();
+			System.out.println("Contato deletado com sucesso!!!");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (psStatement != null) {
+					psStatement.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 	public List<Contato> getContatos() {
 
 		String sql = "SELECT * FROM contatos";
