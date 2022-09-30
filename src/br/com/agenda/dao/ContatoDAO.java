@@ -56,6 +56,50 @@ public class ContatoDAO {
 		}
 	}
 
+	public void update(Contato contato) {
+
+		String sql = "UPDATE contatos SET nome = ?, idade = ?, dataCadastro = ?" + "WHERE id = ?";
+
+		Connection conn = null;
+		PreparedStatement psStatement = null;
+
+		try {
+			// Criar conexão com o banco
+			conn = ConnectionFactory.createConnectionToMySQL();
+
+			// Criar a classe para executar a query
+			psStatement = conn.prepareStatement(sql);
+
+			// Adicionar os valores para atualizar
+			psStatement.setString(1, contato.getNome());
+			psStatement.setInt(2, contato.getIdade());
+			psStatement.setDate(3, new Date(contato.getDataCadastro().getTime()));
+
+			// O id do registro que deseja atualizar
+			psStatement.setInt(4, contato.getId());
+
+			// Executar a query
+
+			psStatement.execute();
+			System.out.println("Contato atualizado com sucesso!!!");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (psStatement != null) {
+					psStatement.close();
+				}
+
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 	public List<Contato> getContatos() {
 
 		String sql = "SELECT * FROM contatos";

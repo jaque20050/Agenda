@@ -15,11 +15,20 @@ public class Main {
 		contato.setIdade(45);
 		contato.setDataCadastro(new Date());
 
-		contatoDAO.save(contato);
+		// contatoDAO.save(contato);
+
+		// Atualizar o contato
+		Contato atualizar = new Contato();
+		atualizar.setNome("Jaqueline C Dias");
+		atualizar.setId(26);
+		atualizar.setDataCadastro(new Date());
+		atualizar.setId(1);
 		
+		contatoDAO.update(atualizar);
+
 		// Visualização dos registros do banco de dados
-		
-		for(Contato c : contatoDAO.getContatos()) {
+
+		for (Contato c : contatoDAO.getContatos()) {
 			System.out.println("Contato: " + c.getNome());
 		}
 	}
